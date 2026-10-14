@@ -1,15 +1,33 @@
+# Gradle caches and generated build output
+.gradle/
+.kotlin/
+**/build/
+
+# Machine-specific Android SDK configuration
+local.properties
+
+# Local IDE state (shared project settings remain tracked)
 *.iml
-.gradle
-/local.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/deploymentTargetSelector.xml
+/.idea/shelf/
+
+# Android build artifacts and signing credentials
+*.apk
+*.aab
+*.ap_
+*.jks
+*.keystore
+keystore.properties
+**/captures/
+**/.externalNativeBuild/
+**/.cxx/
+
+# Operating system files
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+Thumbs.db
