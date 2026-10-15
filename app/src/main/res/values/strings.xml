@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidJetpackComposeExamples</string>
+    <string name="component_playground_screen_title">Component Playground</string>
+    <string name="button_screen_title">Button</string>
+    <string name="text_fields_screen_title">Text Fields</string>
+    <string name="login_and_signup_forms_screen_title">Login and Signup Forms</string>
+    <string name="photo_gallery_screen_title">Photo Gallery</string>
+    <string name="settings_screen_title">Settings</string>
 </resources>
