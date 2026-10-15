@@ -1,33 +1,19 @@
 package com.example.androidjetpackcomposeexamples.views
 
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-
-enum class AppScreens {
-    Home,
-    ComponentPlayground,
-    Button,
-    TextFields,
-    LoginAndSignupForms,
-    PhotoGallery,
-    Settings,
-}
+import androidx.navigation.NavHostController
 
 @Composable
-fun AppNavigator(modifier: Modifier = Modifier, updateTitle: (String) -> Unit) {
-    val navController = rememberNavController()
+fun AppNavigator(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(
         navController = navController,
-        startDestination = AppScreens.Home.name,
+        startDestination = AppRoute.Home,
         modifier = modifier,
         enterTransition = {
             slideInHorizontally(
@@ -54,14 +40,26 @@ fun AppNavigator(modifier: Modifier = Modifier, updateTitle: (String) -> Unit) {
             )
         },
     ) {
-        composable(AppScreens.Home.name) {
-            HomeScreen(navController, updateTitle)
+        composable<AppRoute.Home>() {
+            HomeScreen(
+                onPlaygroundClick = { navController.navigate(AppRoute.ComponentPlayground) },
+                onSettingsClick = { navController.navigate(AppRoute.Settings) },
+            )
         }
-        composable(AppScreens.ComponentPlayground.name) {
-            ComponentPlaygroundScreen(navController, updateTitle)
+        composable<AppRoute.ComponentPlayground>() {
+            ComponentPlaygroundScreen(
+                { navController.navigate(AppRoute.Button)},
+                { navController.navigate(AppRoute.TextFields)}
+            )
         }
-        composable(AppScreens.Settings.name) {
-            SettingsScreen(updateTitle)
+        composable<AppRoute.TextFields>() {
+            TextFieldsExampleScreen()
+        }
+        composable<AppRoute.Settings>() {
+            SettingsScreen()
+        }
+        composable<AppRoute.Button>() {
+            ButtonExampleScreen()
         }
     }
 }

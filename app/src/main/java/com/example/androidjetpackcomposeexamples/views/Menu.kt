@@ -22,15 +22,21 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MenuCardWithChevron(
     title: String,
-    cardElevationInDp: Dp = 8.dp,
+    cardElevationInDp: Dp = 4.dp,
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .padding(8.dp),
+        .padding(12.dp),
     onClick: () -> Unit,
 ) {
     Card(
         shape = RectangleShape,
-        elevation = CardDefaults.cardElevation(cardElevationInDp),
+        elevation = CardDefaults.cardElevation(
+            cardElevationInDp
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            contentColor = MaterialTheme.colorScheme.onSurface,
+        ),
         modifier = modifier
             .clickable(onClick = onClick),
     ) {

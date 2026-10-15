@@ -26,7 +26,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
@@ -39,28 +38,21 @@ import androidx.navigation.NavController
 import com.example.androidjetpackcomposeexamples.R
 
 @Composable
-fun HomeScreen(navController: NavController, updateTitle: (String) -> Unit) {
-    LaunchedEffect(Unit) {
-        updateTitle("Home")
-    }
+fun HomeScreen(onPlaygroundClick: () -> Unit, onSettingsClick: () -> Unit) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         modifier = Modifier.fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .background(MaterialTheme.colorScheme.primaryContainer),
+            .background(MaterialTheme.colorScheme.background),
     ) {
         MenuCardWithChevron(
             title = "Components Playground",
-        ) {
-            navController.navigate(AppScreens.ComponentPlayground.name)
-        }
-
+            onClick = onPlaygroundClick
+        )
         MenuCardWithChevron(
             title = "Settings",
-        ) {
-            navController.navigate(AppScreens.Settings.name)
-        }
-
+            onClick = onSettingsClick
+        )
         Spacer(modifier = Modifier.weight(1f))
     }
 }
