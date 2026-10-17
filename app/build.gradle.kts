@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.google.maps.compose)
     implementation(libs.google.play.services.location)
     implementation(libs.coil.compose)

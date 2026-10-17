@@ -41,3 +41,11 @@ Location retrieval does not require the Maps key, but both examples require work
 The SDK's standard location layer is deliberately disabled: only the explicit foreground location action fetches a location, then a normal map marker displays the result. The selected long-press pin survives configuration changes. Device location is retained in its destination ViewModel while the process lives, and cleared when permission is revoked; it is not written to disk.
 
 Architecture: `DeviceLocationProvider → LocationMapViewModel → LocationMapScreen`. Runtime permissions, lifecycle observation, camera state, and map gestures stay in the UI. Provider and ViewModel are independently testable through the `LocationProvider` interface.
+
+## Appearance settings
+
+Settings controls System/Light/Dark appearance, Default/Ocean/Forest/Purple palettes, wallpaper-based dynamic colors, Default/Serif typography, and Rounded/Slightly rounded/Square shapes. Dynamic colors take priority over the saved palette; disable them to select a palette. Reset restores system appearance, dynamic colors, default typography/palette, and rounded shapes.
+
+`DataStoreSettingsRepository → SettingsViewModel → SettingsApp / SettingsScreen` shares one app-scoped preferences DataStore. Updates are atomic, preserve unrelated options, and persist across restarts. SettingsApp observes preferences above the theme and waits for the initial read before creating navigation, so subsequent changes recompose the existing navigation tree. Unknown stored option names fall back to defaults. Write failures are shown on Settings; read I/O failures fall back to defaults.
+
+The preview, menu cards, standard button examples, text fields, and cards use the selected Material theme. Component-specific shapes such as icon buttons and segmented controls retain their intended control shapes. Google map tiles, satellite imagery, and photo content retain their original colors.

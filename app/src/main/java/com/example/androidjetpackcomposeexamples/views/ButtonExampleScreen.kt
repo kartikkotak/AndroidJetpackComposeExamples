@@ -29,12 +29,12 @@ fun ButtonExampleScreen() {
         Text("Button styles", style = MaterialTheme.typography.headlineSmall)
         Text("Clicks: $clicks · Favorite: ${if (favorite) "on" else "off"}")
         Row { Text("Enable examples", Modifier.weight(1f)); Switch(enabled, { enabled = it }) }
-        Button(onClick = { clicks++ }, enabled = enabled) { Text("Filled") }
-        ElevatedButton(onClick = { clicks++ }, enabled = enabled) { Text("Elevated") }
-        FilledTonalButton(onClick = { clicks++ }, enabled = enabled) { Text("Filled tonal") }
-        OutlinedButton(onClick = { clicks++ }, enabled = enabled) { Text("Outlined") }
-        TextButton(onClick = { clicks++ }, enabled = enabled) { Text("Text") }
-        Button(onClick = { clicks++ }, enabled = enabled) {
+        Button(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, enabled = enabled) { Text("Filled") }
+        ElevatedButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, enabled = enabled) { Text("Elevated") }
+        FilledTonalButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, enabled = enabled) { Text("Filled tonal") }
+        OutlinedButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, enabled = enabled) { Text("Outlined") }
+        TextButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, enabled = enabled) { Text("Text") }
+        Button(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, enabled = enabled) {
             Icon(Icons.Default.Add, null); Spacer(Modifier.width(8.dp)); Text("With an icon")
         }
         Text("Icon buttons", style = MaterialTheme.typography.titleLarge)
@@ -53,11 +53,11 @@ fun ButtonExampleScreen() {
         Text("Floating action buttons", style = MaterialTheme.typography.titleLarge)
         Text("FABs represent a screen's primary action and have no disabled parameter.")
         FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            SmallFloatingActionButton(onClick = { clicks++ }) { Icon(Icons.Default.Add, "Small FAB") }
-            FloatingActionButton(onClick = { clicks++ }) { Icon(Icons.Default.Add, "Standard FAB") }
-            LargeFloatingActionButton(onClick = { clicks++ }) { Icon(Icons.Default.Add, "Large FAB") }
+            SmallFloatingActionButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }) { Icon(Icons.Default.Add, "Small FAB") }
+            FloatingActionButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }) { Icon(Icons.Default.Add, "Standard FAB") }
+            LargeFloatingActionButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }) { Icon(Icons.Default.Add, "Large FAB") }
         }
-        ExtendedFloatingActionButton(onClick = { clicks++ }, icon = { Icon(Icons.Default.Add, null) }, text = { Text("Create item") })
+        ExtendedFloatingActionButton(shape = MaterialTheme.shapes.small, onClick = { clicks++ }, icon = { Icon(Icons.Default.Add, null) }, text = { Text("Create item") })
         Text("Segmented buttons", style = MaterialTheme.typography.titleLarge)
         SingleChoiceSegmentedButtonRow {
             listOf("Day", "Week", "Month").forEachIndexed { index, label ->
@@ -82,7 +82,7 @@ fun ButtonExampleScreen() {
             }
         }
         Text("Loading action", style = MaterialTheme.typography.titleLarge)
-        Button(onClick = { loading = true }, enabled = enabled && !loading) {
+        Button(shape = MaterialTheme.shapes.small, onClick = { loading = true }, enabled = enabled && !loading) {
             if (loading) {
                 CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp)
                 Spacer(Modifier.width(8.dp))
