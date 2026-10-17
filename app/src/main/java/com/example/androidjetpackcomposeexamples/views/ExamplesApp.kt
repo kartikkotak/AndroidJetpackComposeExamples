@@ -11,6 +11,13 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import com.example.androidjetpackcomposeexamples.ExamplesApplication
+import com.example.androidjetpackcomposeexamples.data.PhotoRepository
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -21,7 +28,10 @@ import com.example.androidjetpackcomposeexamples.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExamplesApp(modifier: Modifier = Modifier) {
+fun ExamplesApp(
+    modifier: Modifier = Modifier,
+    photoRepository: PhotoRepository = (LocalContext.current.applicationContext as ExamplesApplication).photoRepository,
+) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val destination = backStackEntry?.destination
@@ -31,6 +41,15 @@ fun ExamplesApp(modifier: Modifier = Modifier) {
         destination?.hasRoute<AppRoute.Button>() == true -> R.string.button_screen_title
         destination?.hasRoute<AppRoute.TextFields>() == true -> R.string.text_fields_screen_title
         destination?.hasRoute<AppRoute.Settings>() == true -> R.string.settings_screen_title
+        destination?.hasRoute<AppRoute.ListsAndGrids>() == true -> R.string.lists_grids_title
+        destination?.hasRoute<AppRoute.EditableList>() == true -> R.string.editable_list_title
+        destination?.hasRoute<AppRoute.PhotoList>() == true -> R.string.photo_list_title
+        destination?.hasRoute<AppRoute.PhotoGrid>() == true -> R.string.photo_grid_title
+        destination?.hasRoute<AppRoute.Carousels>() == true -> R.string.carousels_title
+        destination?.hasRoute<AppRoute.PhotoPager>() == true -> R.string.photo_pager_title
+        destination?.hasRoute<AppRoute.PhotoCarousel>() == true -> R.string.photo_carousel_title
+        destination?.hasRoute<AppRoute.AdvancedUi>() == true -> R.string.advanced_ui_title
+        destination?.hasRoute<AppRoute.LocationMap>() == true -> R.string.location_map_title
         else -> R.string.default_screen_title
     }
 
@@ -39,6 +58,13 @@ fun ExamplesApp(modifier: Modifier = Modifier) {
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
+                navigationIcon = {
+                    if (navController.previousBackStackEntry != null) {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, "Navigate back")
+                        }
+                    }
+                },
                 title = {
                     Text(
                         stringResource(titleRes),
@@ -55,6 +81,7 @@ fun ExamplesApp(modifier: Modifier = Modifier) {
     ) { innerPadding ->
         AppNavigator(
             navController = navController,
+            photoRepository = photoRepository,
             modifier = Modifier.padding(innerPadding),
         )
     }

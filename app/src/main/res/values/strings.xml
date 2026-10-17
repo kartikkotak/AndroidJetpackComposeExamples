@@ -11,4 +11,13 @@
     <string name="text_fields_example_label">Enter some text</string>
     <string name="button_example_action">Click me</string>
     <string name="button_example_click_count">Clicks: %1$d</string>
+    <string name="lists_grids_title">Lists and Grids</string>
+    <string name="editable_list_title">Interactive List</string>
+    <string name="photo_list_title">Photo List</string>
+    <string name="photo_grid_title">Photo Grid</string>
+    <string name="carousels_title">Carousels</string>
+    <string name="photo_pager_title">Horizontal Pager</string>
+    <string name="photo_carousel_title">LazyRow Carousel</string>
+    <string name="advanced_ui_title">Advanced UI</string>
+    <string name="location_map_title">Location and Map</string>
 </resources>

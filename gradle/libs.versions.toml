@@ -1,4 +1,7 @@
 [versions]
+mapsCompose = "6.12.0"
+playServicesLocation = "21.3.0"
+coil = "3.3.0"
 agp = "9.4.1"
 coreKtx = "1.19.1"
 junit = "4.13.2"
@@ -12,6 +15,14 @@ navigationCompose = "2.10.2"
 kotlinxSerialization = "1.7.3"
 
 [libraries]
+google-maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
+google-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.10.2" }
+
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
